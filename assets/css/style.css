@@ -24,3 +24,36 @@ h1, h2 {
     float: left;
     font-size: 280%;
 }
+
+/* navigation options */
+
+#menu {
+    font-size: 110%;
+    letter-spacing: 3px;
+}
+
+#menu, #logo {
+    line-height: 75px;
+}
+
+#menu li {
+    float: right;
+    list-style-type: none;
+    margin-right: 30px;
+}
+
+#menu a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #6A2F2F;
+    border-radius: 20px;
+}
+
+#menu a:hover {
+    background: #6A2F2F;
+    color: #fff;
+}
+
+.active {
+    border-bottom: 1px solid #6A2F2F;
+}
