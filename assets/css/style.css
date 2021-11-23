@@ -117,23 +117,28 @@ h1, h2 {
 
 #recipe {
     height: 400px;
+    background: url('/assets/css/images/recipe-image.jpeg') no-repeat center center;
+
 }
 
 #left-about {
     padding-top: 30px;
     width: 33%;
     float: left;
+    background-color: rgba(234, 234, 234, .2);
 }
 
 #right-about {
     padding-top: 30px;
     width: 33%;
     float: right;
+    background-color: rgba(234, 234, 234, .6);
 }
 
 #center-about {
     width: 33%;
     margin: 0 auto;
+    background-color: rgba(234, 234, 234, .6);
 }
 
 
@@ -153,11 +158,11 @@ h1, h2 {
     clear: both;
     margin-bottom: 50px;
     letter-spacing: 2px;
+    
 }
 
 .center-about-heading {
-    width: 300px;
-    height: 300px;
+
     padding: 20px;
     margin: 0 auto;
 
