@@ -9,7 +9,7 @@
 body {
     font-family: Roboto, sans-serif;
     font-weight: 300;
-    color:red;
+    color:rgb(88, 35, 35);
     text-transform: capitalize;
 }
 
@@ -134,7 +134,6 @@ h1, h2 {
 #center-about {
     width: 33%;
     margin: 0 auto;
-    background-color: green;
 }
 
 
@@ -154,4 +153,19 @@ h1, h2 {
     clear: both;
     margin-bottom: 50px;
     letter-spacing: 2px;
+}
+
+.center-about-heading {
+    width: 300px;
+    height: 300px;
+    padding: 20px;
+    margin: 0 auto;
+
+    letter-spacing: 2px;
+}
+
+#welcome {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 280%;
 }
