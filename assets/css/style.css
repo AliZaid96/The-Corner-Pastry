@@ -116,25 +116,42 @@ h1, h2 {
 /* recipes style (mid page) */
 
 #recipe {
-    height: 600px;
+    height: 400px;
 }
 
 #left-about {
     padding-top: 30px;
     width: 33%;
     float: left;
-    background-color: blue;
 }
 
 #right-about {
     padding-top: 30px;
     width: 33%;
     float: right;
-    background-color: silver;
 }
 
 #center-about {
     width: 33%;
     margin: 0 auto;
     background-color: green;
+}
+
+
+.left-about-heading {
+    width: 60%;
+    float: right;
+    line-height: 20px;
+    clear: both;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+}
+
+.right-about-heading {
+    width: 60%;
+    float: left;
+    line-height: 20px;
+    clear: both;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
 }
