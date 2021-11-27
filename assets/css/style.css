@@ -180,9 +180,31 @@ h1, h2 {
 /* Menu style*/
 
 #foods {
-    height: 400px;
-    padding: 1rem 0;
-    margin-bottom: 80px;
-    background: url('/assets/css/images/Menu\ image.jpeg') 
-    center center / cover no-repeat fixed;
+    background-image: url('/assets/css/images/Menu\ image.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+#foods div {
+    color: #fafafa;
+    background-color: rgba(0, 0, 0, .6);
+    width: 32.5%;
+    height: 200px;
+    float: left;
+    padding: 30px 0 0 10px;
+    text-align: center;
+}
+
+li {
+    list-style-type: none;
+}
+
+h3 {
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: white;
 }
