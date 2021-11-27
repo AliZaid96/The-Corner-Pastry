@@ -178,3 +178,11 @@ h1, h2 {
 }
 
 /* Menu style*/
+
+#foods {
+    height: 400px;
+    padding: 1rem 0;
+    margin-bottom: 80px;
+    background: url('/assets/css/images/Menu\ image.jpeg') 
+    center center / cover no-repeat fixed;
+}
