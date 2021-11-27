@@ -71,6 +71,8 @@ h1, h2 {
 
 }
 
+/* hero image */
+
 #hero-image {
     height: 600px;
     width: 100%;
@@ -78,7 +80,7 @@ h1, h2 {
 
     /* animation property */
     animation-name: hero-zoom;
-    animation-duration: 7s;
+    animation-duration: 5s;
     animation-fill-mode: forwards;
 }
 
@@ -174,3 +176,5 @@ h1, h2 {
     margin: 50px 0;
     font-size: 280%;
 }
+
+/* Menu style*/
