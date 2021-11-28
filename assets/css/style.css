@@ -187,6 +187,7 @@ h1, h2 {
     width: 100%;
     overflow: hidden;
 }
+
 /* bug here */
 
 #foods div {
@@ -220,7 +221,7 @@ h3 {
 
 #map-wrapper {
     height: 300px;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
 }
 
 #map {
@@ -228,3 +229,31 @@ h3 {
     width: 98.5%;
     border: 10px solid #6A2F2F;
  }
+
+ /* footer style */
+
+ footer {
+	background-color: #6f4e37;
+	padding: 1em;
+	text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+	z-index: 3;
+}
+
+footer > span {
+	color: silver;
+}
+
+footer > a {
+	color: beige;
+	text-decoration: none;
+	padding: 0 15px;
+	font-size: 0.8rem;
+}
+
+footer > p {
+	color: silver;
+}
