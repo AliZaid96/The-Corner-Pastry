@@ -233,7 +233,7 @@ h3 {
  /* footer style */
 
  footer {
-	background-color: #6f4e37;
+	background-color: #6A2F2F;
 	padding: 1em;
 	text-align: center;
     width: 100%;
@@ -244,16 +244,13 @@ h3 {
 }
 
 footer > span {
-	color: silver;
+	color: white;
 }
 
 footer > a {
-	color: beige;
+	color: white;
 	text-decoration: none;
 	padding: 0 15px;
 	font-size: 0.8rem;
-}
-
-footer > p {
-	color: silver;
+    font-size: 150%;
 }
