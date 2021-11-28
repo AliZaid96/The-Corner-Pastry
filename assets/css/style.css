@@ -199,7 +199,7 @@ h1, h2 {
     text-align: center;
 }
 
-li {
+div li {
     list-style-type: none;
     font-size: 150%;
 }
@@ -217,3 +217,14 @@ h3 {
     margin: 10px 0;
     font-size: 280%;
 }
+
+#map-wrapper {
+    height: 300px;
+    margin-bottom: 100px;
+}
+
+#map {
+    height: 100%;
+    width: 98.5%;
+    border: 10px solid #6A2F2F;
+ }
