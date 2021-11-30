@@ -243,14 +243,14 @@ h3 {
 	z-index: 3;
 }
 
-footer > span {
-	color: white;
-}
-
 footer > a {
 	color: white;
 	text-decoration: none;
 	padding: 0 15px;
 	font-size: 0.8rem;
     font-size: 150%;
+}
+
+#no-spacing {
+    letter-spacing: 0;
 }
