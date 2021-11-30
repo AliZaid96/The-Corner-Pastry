@@ -25,7 +25,7 @@
         </nav>
 
     </header>
-
+    <form action="https://pastry.com" method="POST">
     <fieldset>
 		<legend>Your details</legend>
 
@@ -49,6 +49,55 @@
 		</select>
 
 	</fieldset>
+    <fieldset>
+        <legend>Our Sweets</legend>
+        <div>
+            <label for="fav-sweet" class="block-label">What was your favourite type of Sweet?</label>
+            <input id="fav-sweet" list="sweet" name="fav-sweet" required>
+            <datalist id="coffees">
+                <option value="Croissants">
+                <option value="Cannoli">
+                <option value="Pies">
+                <option value="Strudels">
+                <option value="Danishes">
+            </datalist>
+        </div>
+
+        <p>What is your favourite Spaghetti</p>
+
+        <input id="Fettuccine" name="Fettuccine" value="Fettuccine" type="radio" required>
+        <label for="Fettuccine">Fettuccine</label>
+
+        <input id="Walnut-Pesto" name="Walnut-Pesto" value="Walnut-Pesto" type="radio" required>
+        <label for="Walnut-Pesto">Walnut Pesto</label>
+
+        <input id="Pantry-Pasta" name="Pantry Pasta" value="Pantry Pasta" type="radio" required>
+        <label for="Pantry-Pasta">Pantry Pasta</label>
+
+        <input id="Other" name="Other" value="Other" type="radio" required>
+        <label for="Other">Other</label>
+
+        <p>How often do you visit The Corner Pastry?</p>
+
+        <input id="once-a-week" name="visit-frequency" value="once-a-week" type="radio" required>
+        <label for="once-a-week">Once a week</label>
+
+        <input id="twice-a-week" name="visit-frequency" value="twice-a-week" type="radio" required>
+        <label for="twice-a-week">Twice a week</label>
+
+        <input id="once-a-fortnight" name="visit-frequency" value="once-a-fortnight" type="radio" required>
+        <label for="once-a-fortnight">Once a fortnight</label>
+
+        <input id="not-often" name="visit-frequency" value="not-often" type="radio" required>
+        <label for="not-often">Not often</label>
+    </fieldset>
+    <fieldset>
+        <legend>Feedback</legend>
+        <label for="feedback" class="block-label">How can we improve your experience with us?</label>
+        <br>
+        <textarea id="feedback" rows="4" cols="87" name="feedback"></textarea>
+    </fieldset>
+    </form>
 
     <footer class="text-uppercase">
 
