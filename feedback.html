@@ -25,36 +25,24 @@
         </nav>
 
     </header>
-    <form action="https://pastry.com" method="POST">
+    <br>
+    <section class="form-section">
+    <form action="https://pastry.com" method="POST" class="signup-form">
     <fieldset>
-		<legend>Your details</legend>
+		<h2>Your details</h2>
 
-		<div class="float-left">
-			<label for="name-field" class="block-label">Name</label>
-			<input id="name-field" type="text" name="full_name" placeholder="Your name" required>
-		</div>
-		<div class="float-left">
-			<label for="email-field" class="block-label">Email</label>
-			<input id="email-field" type="email" name="email" placeholder="Your email" required>
-		</div>
-
-		<label for="age" class="block-label">Age</label>
-		<select id="age" name="age" required>
-			<option value="under-20">Under 20</option>
-			<option value="20s">20-29</option>
-			<option value="30s">30-39</option>
-			<option value="40s">40-49</option>
-			<option value="50s">50-59</option>
-			<option value="60+">60+</option>
-		</select>
-
+		
+			<label for="fname">First Name</label>
+			<input id="fname" name="first_name" type="text" class="text-input" required>
+			<label for="email">Email Address</label>
+			<input type="email" id="email" name="email_address" class="text-input" required>
 	</fieldset>
     <fieldset>
-        <legend>Our Sweets</legend>
+        <h2>Our Sweets</h2>
         <div>
-            <label for="fav-sweet" class="block-label">What was your favourite type of Sweet?</label>
-            <input id="fav-sweet" list="sweet" name="fav-sweet" required>
-            <datalist id="coffees">
+            <label for="fav-sweet">What was your favourite type of Sweet?</label>
+            <input id="fav-sweet" list="sweet" name="fav-sweet" class="text-input" required>
+            <datalist id="sweet">
                 <option value="Croissants">
                 <option value="Cannoli">
                 <option value="Pies">
@@ -62,7 +50,7 @@
                 <option value="Danishes">
             </datalist>
         </div>
-
+        <div id="radio-margin">
         <p>What is your favourite Spaghetti</p>
 
         <input id="Fettuccine" name="Fettuccine" value="Fettuccine" type="radio" required>
@@ -76,7 +64,9 @@
 
         <input id="Other" name="Other" value="Other" type="radio" required>
         <label for="Other">Other</label>
+        </div>
 
+        <div id="radio-margin">
         <p>How often do you visit The Corner Pastry?</p>
 
         <input id="once-a-week" name="visit-frequency" value="once-a-week" type="radio" required>
@@ -85,19 +75,22 @@
         <input id="twice-a-week" name="visit-frequency" value="twice-a-week" type="radio" required>
         <label for="twice-a-week">Twice a week</label>
 
-        <input id="once-a-fortnight" name="visit-frequency" value="once-a-fortnight" type="radio" required>
-        <label for="once-a-fortnight">Once a fortnight</label>
+        <input id="once-a-month" name="visit-frequency" value="once-a-month" type="radio" required>
+        <label for="once-a-month">Once a month</label>
 
         <input id="not-often" name="visit-frequency" value="not-often" type="radio" required>
         <label for="not-often">Not often</label>
+        </div>
     </fieldset>
+    <br>
     <fieldset>
-        <legend>Feedback</legend>
-        <label for="feedback" class="block-label">How can we improve your experience with us?</label>
+        <label for="feedback">How can we improve your experience with us?</label>
         <br>
-        <textarea id="feedback" rows="4" cols="87" name="feedback"></textarea>
+        <textarea id="feedback" class="text-input" name="feedback"></textarea>
+        <input class="submit-button" type="submit" value="Submit">
     </fieldset>
     </form>
+</section>
 
     <footer class="text-uppercase">
 
