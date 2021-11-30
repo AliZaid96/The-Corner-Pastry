@@ -180,7 +180,7 @@ h1, h2 {
 /* Menu style*/
 
 #foods {
-    background-image: url('/assets/css/images/Menu_image.jpeg');
+    background-image: url(./images/menu_image.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
