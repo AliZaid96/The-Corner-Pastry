@@ -226,8 +226,8 @@ h3 {
 
 #map {
     height: 100%;
-    width: 98.5%;
-    border: 10px solid #6A2F2F;
+    width: 100%;
+
  }
 
  /* footer style */
@@ -339,6 +339,13 @@ form  h2 {
         float: left;
         padding: 0;
     }
+
+    #foods > div {
+        width: 100%;
+        clear: both;
+        height: 300px;
+        padding: 0;
+    }
 }
 
 /* for medium screen sizes from 950px and down */
@@ -350,5 +357,29 @@ form  h2 {
         margin-left: 30px;
         margin-bottom: 20px;
         line-height: 25px;
+    }
+    
+    #cover-text {
+        left: 0;
+    }
+
+    #recipe {
+        width: 90%;
+        height: 1200px;
+        margin: 0 auto;
+    }
+
+    .left-about-heading, .right-about-heading {
+        width: inherit;
+    }
+
+    .left-about-heading h2, .right-about-heading h2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .left-about-heading p, .right-about-heading p {
+        text-align: center;
+        padding: 0 20px;
     }
 }
