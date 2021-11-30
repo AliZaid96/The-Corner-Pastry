@@ -313,3 +313,30 @@ form  h2 {
 #radio-margin {
     margin: 10px;
 }
+
+/* Media queries */
+
+@media screen and (max-width: 1200px) {
+    #recipe {
+        width: 65%;
+        height: 1200px;
+        margin: 0 auto;
+    }
+
+    #welcome {
+        padding: 30px 0;
+        margin: 0;
+    }
+
+    #left-about, #right-about {
+        width: 100%;
+        float: left;
+        padding: 0;
+    }
+    #center-about {
+        clear: both;
+        width: 100%;
+        float: left;
+        padding: 0;
+    }
+}
