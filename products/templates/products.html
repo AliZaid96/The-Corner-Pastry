@@ -1,0 +1,239 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block index_content %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Products</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Products</li>
+                        </ol>
+                    <div class="row">
+                      <div class="col-sm-8"> <a href="{% url 'add_product' %}" class="btn btn-primary">Add Product</a></div>
+                    </div>
+                   <br>
+
+                        <div class="card mb-4">
+
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                   {% for prod in products_instance %}
+                                        <tr>
+                                            <td>{{ prod.product_name }}</td>
+                                            <td>{{ prod.price }}</td>
+
+                                        </tr>
+                                       {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+     </body>
+</html>
+{% endblock %}
+  {% block external_js %}
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <script src=" https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="{% static 'js/datatables-simple-demo.js' %}"></script>
+
+<script>
+    var showErrorMsgLogin = function(type, msg) {
+        var alert = $('<div class="alert alert-'+type+'" role="alert">'+msg+'\
+        </div>');
+
+        $('.developer_message').html("");
+        $('.developer_message').append(alert);
+    }
+
+
+$(document).on('click','.add_new_branch_function', function(event){
+        $('.modal-title').html("Add New Branch");
+
+    $('.return_data').html('<form method="post" class="branchForm"> \
+                        <div class="modal-body">\
+                                <label for="email_address1">Branch Name</label>\
+                                <div class="form-group">\
+                                    <div class="form-line">\
+                                        <input type="text"\
+                                            class="form-control"\
+                                            placeholder="Enter your branch name" name="branch_name" required="">\
+                                    </div>\
+                                </div>\
+                                <label for="branchaddress">Branch Address</label>\
+                                <div class="form-group">\
+                                    <div class="form-line">\
+                                        <textarea  class="form-control"\
+                                            placeholder="Enter your branch address" name="branch_address" required=""></textarea>\
+                                    </div>\
+                                </div>\
+                                <br>\
+                                <div class="developer_message" style="display:none">\
+                                </div>\
+                        </div>\
+                        <div class="modal-footer">\
+                            <button type="submit"\
+                                class="btn btn-info waves-effect btn-save">Save</button>\
+                            <button type="button" class="btn btn-danger waves-effect"\
+                                data-bs-dismiss="modal">Cancel</button>\
+                        </div>\
+                        </form>')
+    $('#exampleModal').modal('show');
+})
+
+
+$(document).on('click','.edit_branch', function(event){
+    $('.modal-title').html("Update Branch");
+
+    var id = $(this).attr('id');
+    var branch_name  = $(this).attr('branch_name');
+    var branch_address = $(this).attr('branch_address');
+
+    $('.return_data').html('<form method="post" class="branchForm"> \
+                        <div class="modal-body">\
+                                <label for="email_address1">Branch Name</label>\
+                                <div class="form-group">\
+                                    <div class="form-line">\
+                                    <input type="hidden" value="'+id+'" name="branch_id">\
+                                        <input type="text"\
+                                            class="form-control"\
+                                            placeholder="Enter your branch name" name="branch_name" required="" value="'+branch_name+'">\
+                                    </div>\
+                                </div>\
+                                <label for="branchaddress">Branch Address</label>\
+                                <div class="form-group">\
+                                    <div class="form-line">\
+                                        <textarea  class="form-control"\
+                                            placeholder="Enter your branch address" name="branch_address" required="">'+branch_address+'</textarea>\
+                                    </div>\
+                                </div>\
+                                <br>\
+                                <div class="developer_message" style="display:none">\
+                                </div>\
+                        </div>\
+                        <div class="modal-footer">\
+                            <button type="submit"\
+                                class="btn btn-info waves-effect btn-save">Save</button>\
+                            <button type="button" class="btn btn-danger waves-effect"\
+                                data-bs-dismiss="modal">Cancel</button>\
+                        </div>\
+                        </form>')
+    $('#exampleModal').modal('show');
+})
+
+
+
+$(document).on('submit','.branchForm', function(e){
+      e.preventDefault();
+      var form_data = new FormData(this);
+       $('.btn-save').html("Processing..")
+       $.ajax({
+            url: "branches-query.php",
+             method: "POST",
+             processData: false,
+            contentType: 'multipart/form-data',
+            contentType: false,
+            cache: false,
+            data: form_data,
+            success: function(data) {
+                console.log(data)
+            var obj = jQuery.parseJSON(data);
+              console.log(obj.status);
+              if(obj.status == 1){
+                 $('.developer_message').show();
+                 showErrorMsgLogin('success', obj.developer_message);
+                 $('.btn-save').text("Save")
+                window.setTimeout(function () {
+                     window.location.href = 'branches.php';
+                }, 1000);
+
+              }else{
+                $('.developer_message').show();
+                $('.developer_message').html(data.developer_message);
+
+              }
+            },
+          error:function(data){
+                   console.log('error')
+                   console.log(data)
+            }
+     })
+});
+
+
+$(document).on('click','.delete', function(event){
+
+            swal({
+              title: "Are you sure you want to delete this branch?",
+              text: "Once deleted, you will not be able to recover this!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                var id = this.id;
+                    var $this = $(this);
+
+            $.get("delete.php?branch_id="+id, function (data, status) {
+
+                            var obj = jQuery.parseJSON(data);
+                                if (obj.status == 1) {
+                                      var table = $('.contact_list').DataTable();
+                                       var Row = $this.closest('tr');
+                                        var tr = $this.parents('tr');
+                                    var nRow = Row[0];
+                                    $('.contact_list').dataTable().fnDeleteRow(nRow)
+
+
+                                  }
+                          });
+
+
+                swal("Poof! Branch has been deleted!", {
+                  icon: "success",
+
+                });
+              } else {
+               return false;
+              }
+            });
+
+    })
+
+</script>
+{% endblock %}
+
+
