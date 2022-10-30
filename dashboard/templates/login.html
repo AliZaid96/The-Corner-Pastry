@@ -1,56 +1,21 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% block title %}- Login{% endblock %}
 {% block content %}
     <section class="form-section">
         <form  method="POST" class="signup-form LoginForm">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
             <fieldset>
         		<h2>Customer Login</h2>
-        			<label for="fname">Email</label>
-        			<input id="fname" name="email" type="text" class="text-input" required>
-
-                    <label for="fname">Password</label>
-        			<input id="fname" name="password" type="password" class="text-input" required>
-                    <a href="{% url 'signup' %}"><label for="feedback">Not account sign up?</label>
+                {{ form.username.errors }}
+                {% render_field form.username class="text-input" id="txt-input" placeholder="UserName" required="true" %}
+                {{ form.password.errors }}
+                {% render_field form.password class="text-input" id="pwd" placeholder="Password" required="true" %}
+                <button class="submit-button btn-save" type="submit">Login</button>
         	</fieldset>
-            <fieldset>
-                <input class="submit-button btn-save" type="submit" value="Login">
-            </fieldset>
+            
+            <a href="{% url 'signup' %}">Not registered yet! Sign up?</a>
         </form>
     </section>
-{% endblock %}
-{% block scripts %}
-    <script>
-        $(document).on('submit','.LoginForm', function(e){
-            e.preventDefault();
-            var form_data = new FormData(this);
-            $('.btn-save').html("Processing..");
-            var form = $('.LoginForm');
-            form_data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
-                $.ajax({
-                url: "/login_ajax/",
-                method: "POST",
-                processData: false,
-                contentType: false,
-                cache: false,
-                data: form_data,
-                success: function (data) {
-                    if (data.status == 1) {
-                        // set 2 seconds delay
-                        alert_success = 'alert-success';
-                        setTimeout(function () {
-                            window.location.href = '/index';
-                            alert("Login successfully")
-                        }, 3000)
-                    } else {
-                        alert_success = 'alert-danger';
-                        alert("Error")
-                    }
-                },
-                error: function (data) {
-                    console.log('error')
-                    console.log(data)
-                }
-            })
-        });
-    </script>
 {% endblock %}

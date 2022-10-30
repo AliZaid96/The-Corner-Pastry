@@ -6,16 +6,18 @@ import time
 import random
 from django.shortcuts import redirect
 from products.models import Categories, WebsiteUser, CustomerOrder, Products
-
-# Create your views here.
-
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic import CreateView
+from django.contrib import messages
+from .forms import SignUpForm
 
 def products(request):
     context = {}
     products_instance = Products.objects.all()
     context['products_instance'] = products_instance
     return render(request, 'products.html', context)
-
 
 def customer_order(request):
       context = {}
@@ -29,11 +31,9 @@ def category(request):
     context['category_Date'] = category_instance
     return render(request, 'categories.html', context)
 
-
 def add_category(request):
     context = {}
     return render(request, 'add-category.html', context)
-
 
 def add_product(request):
     context = {}
@@ -41,21 +41,9 @@ def add_product(request):
     context['category_Date'] = category_instance
     return render(request, 'add-products.html', context)
 
-
-def login(request):
-    context = {}
-    return render(request, 'login.html', context)
-
-
-def signup(request):
-    context = {}
-    return render(request, 'register.html', context)
-
-
 def feedback(request):
     context = {}
     return render(request, 'feedback.html', context)
-
 
 def order_details(request):
     context = {}
@@ -99,7 +87,6 @@ def order_details(request):
     context['user_id'] = user_id
     return render(request, 'order-details.html', context)
 
-
 def order_now_ajax(request):
         context = {}
         print("working")
@@ -131,7 +118,6 @@ def indiviual_order(request):
     context['status'] = 1                                  
     return JsonResponse(context, status=http.HTTPStatus.OK)
 
-
 def category_ajax(request):
     context = {}
     category_name = request.GET.get('category_name')
@@ -145,7 +131,6 @@ def category_ajax(request):
         context['status'] = -2
         context['developer_message'] = "Something went wrong"
     return JsonResponse(context, status=http.HTTPStatus.OK)
-
 
 def add_product_ajax(request):
     context = {}
@@ -171,51 +156,21 @@ def add_product_ajax(request):
             context['developer_message'] = "Something went wrong"
     return JsonResponse(context, status=http.HTTPStatus.OK)
 
+# Sign Up View
+class SignUpView(SuccessMessageMixin, CreateView):
+    form_class = SignUpForm
+    success_url = reverse_lazy('index')
+    success_message = "User registered successfuly"
+    template_name = 'register.html'
 
-def login_ajax(request):
-    context = {}
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user_get = WebsiteUser.objects.get(Q(email=email), Q(password=password))
-        user_get_count = WebsiteUser.objects.filter(email=email,password=password).count()
-        if user_get_count == 0:
-            context['developer_message'] = "Invalid email or password"
-            context['status'] = -2
-        else:  # activate = emailCheck.activate
-            user_id = user_get.id
-            request.session['user_id'] = user_id
-            context['developer_message'] = "Login Suceessfully"
-            context['status'] = 1
+class UserLogin(LoginView):
+    template_name = 'login.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
 
-    return JsonResponse(context, status=http.HTTPStatus.OK)
-
-
-def signup_ajax(request):
-    context = {}
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        try:
-            email_check = WebsiteUser.objects.filter(Q(email=email))
-            if email_check:
-                context['status'] = -2
-                context['developer_message'] = "Email already exits"
-            else:
-                product_obj = WebsiteUser()
-                product_obj.customer_name = name
-                product_obj.email = email
-                product_obj.password = password
-                product_obj.save()
-                context['status'] = 1
-                context['developer_message'] = "Customer Register successfully"
-        except Exception as e:
-            context['status'] = -2
-            context['developer_message'] = "Something went wrong"
-
-    return JsonResponse(context, status=http.HTTPStatus.OK)
-
+    def get_success_url(self):
+        messages.success(self.request, 'Login completed')
+        return reverse_lazy('index')
 
 def logout(request):
      del request.session['user_id']

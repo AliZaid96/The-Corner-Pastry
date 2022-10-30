@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from products.models import Categories, Products
 from django.db.models import Q
-# Create your views here.
-
 
 def index(request):
     context = {}

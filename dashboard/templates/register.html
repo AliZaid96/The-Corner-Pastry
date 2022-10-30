@@ -1,63 +1,33 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% block title %}- Signup{% endblock %}
 {% block content %}
     <section class="form-section">
         <form  method="POST" class="signup-form SignupForm">
+            {% csrf_token %}
             <fieldset>
         		<h2>Customer Register</h2>
-                    <label for="fname">Name</label>
-        			<input id="fname" name="name" type="text" class="text-input" required>
+                {{ form.username.errors }}
+                {% render_field form.first_name class="text-input" id="txt-input" placeholder="First Name" required="true" %}
 
-        			<label for="fname">Email</label>
-        			<input id="fname" name="email" type="text" class="text-input" required>
+                {{ form.username.errors }}
+                {% render_field form.last_name class="text-input" id="txt-input" placeholder="Last Name" required="true" %}
 
-                    <label for="fname">Password</label>
-        			<input id="fname" name="password" type="password" class="text-input" required>
+                {{ form.username.errors }}
+                {% render_field form.username class="text-input" id="txt-input" placeholder="UserName" required="true" %}
+
+                {{ form.username.errors }}
+                {% render_field form.email class="text-input" id="txt-input" placeholder="Email" required="true" %}
+
+                {{ form.username.errors }}
+                {% render_field form.password1 class="text-input" id="txt-input" placeholder="Password" required="true" %}
+
+                {{ form.username.errors }}
+                {% render_field form.password2 class="text-input" id="txt-input" placeholder="Confirm Password" required="true" %}
         	</fieldset>
             <fieldset>
                 <input class="submit-button" type="submit" value="Register">
             </fieldset>
         </form>
     </section>
-{% endblock %}
-{% block scripts %}
-    <script>
-        $(document).on('submit','.SignupForm', function(e){
-            e.preventDefault();
-            var form_data = new FormData(this);
-            $('.btn-save').html("Processing..")
-            var form = $('.SignupForm');
-            form_data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
-            $.ajax({
-                url: "/signup_ajax/",
-                method: "POST",
-                processData: false,
-                contentType: false,
-                cache: false,
-                data: form_data,
-                success: function (data) {
-                    console.log(data)
-                    if (data.status == 1) {
-                        // set 2 seconds delay
-                        alert_success = 'alert-success';
-                        setTimeout(function () {
-                            window.location.href = '/login';
-                            alert("Customer Register successfully")
-                        }, 1000)
-                    }
-                    else if(data.status == -2){
-                        alert("Email already exits")
-                    }
-                    else {
-                        alert_success = 'alert-danger';
-                        alert("Error")
-                    }
-                },
-                error: function (data) {
-                    console.log('error')
-                    console.log(data)
-                }
-            })
-        });
-    </script>
 {% endblock %}

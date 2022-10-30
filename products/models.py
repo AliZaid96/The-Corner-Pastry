@@ -1,24 +1,6 @@
 from django.db import models
-
-# Create your models here.
 from django.db import models
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser
-# Create your models here.
-
-
-class User(AbstractUser):
-    user_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, blank=True, null=True)
-    first_name = models.CharField(max_length=100, blank=True, null=True)
-    last_name = models.CharField(max_length=100, blank=True, null=True)
-    password = models.CharField(max_length=100, blank=True, null=True)
-    dob = models.CharField(max_length=2500, null=True)
-    email = models.CharField(max_length=250, blank=True, null=True, unique=False)
-    REQUIRED_FIELDS = ['email', 'password', 'name']
-
-    class Meta:
-        db_table = 'user'
-
 
 class Categories(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)

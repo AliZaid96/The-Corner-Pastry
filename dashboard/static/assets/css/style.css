@@ -20,6 +20,30 @@ h1, h2 {
     color: #6A2F2F;
 }
 
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+
+input{
+    padding: .5rem;
+}
+
+input:focus-visible {
+    outline: none;
+    outline-offset: none;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;   
+}
+
+a:visited {
+    color: inherit;
+}
+
 #logo {
     float: left;
     font-size: 280%;
@@ -296,7 +320,7 @@ form  h2 {
 }
 
 .submit-button {
-    margin-top: 20px;
+    margin: 20px 0;
     border-radius: 2px;
     padding: 15px 32px;
     font-size: 100%;
@@ -304,6 +328,15 @@ form  h2 {
     background-color: #f16c6b;
     color: #fafafa;
     display: block;
+    cursor: pointer;
+}
+
+.LoginForm a:hover {
+    font-weight: bolder;
+    font-size: 1rem;
+    text-decoration: underline;
+    transition-property: font-size;
+    transition-duration: 4s;
 }
 
 .join-button:hover {

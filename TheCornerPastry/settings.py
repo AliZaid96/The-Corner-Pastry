@@ -23,7 +23,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dashboard',
-    'products'
+    'products',
+    # 3rd party apps
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -35,8 +37,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-AUTH_USER_MODEL = 'products.User'
 
 ROOT_URLCONF = 'TheCornerPastry.urls'
 
@@ -119,3 +119,7 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+LOGOUT_REDIRECT_URL = 'login'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
