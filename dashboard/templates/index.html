@@ -1,39 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="pastry shop with our unique recipes">
-    <meta name="keywords" content="pastry, food, pizza, recipes and steps">
-
-
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-    <title>The Corner Pastry</title>
-</head>
-<body>
-    <header>
-        <a href="index.html">
-            <h1 id="logo">The Corner Pastry</h1>
-        </a>
-        <nav>
-
-            <ul id="menu">
-                {% if 'user_id' not in request.session %}
-                <li><a href="{% url 'login' %}" aria-label="Go to the feedback page" id="no-spacing">Login</a></li>
-                 {% else %}
-                <li><a href="{% url 'logout' %}" aria-label="Go to the feedback page" id="no-spacing">Logout</a></li>
-                {% endif %}
-                <li><a href="{% url 'feedback' %}" aria-label="Go to the feedback page" id="no-spacing">FeedBack</a></li>
-                <li><a href="#menu-link" aria-label="Go to the menu section">Menu</a></li>
-                <li><a href="index.html" aria-label="Go to the top of the page" class="active">Home</a></li>
-            </ul>
-        </nav>
-
-    </header>
-
-
+{% extends 'base.html' %}
+{% block content %}
     <section id="hero-outer">
         <div id="hero-image"></div>
         <div id="cover-text">
@@ -43,31 +9,34 @@
     </section>
     <section id="recipe">
         <h1 class="welcome">Why Our Menu</h1>
-        <div id="left-about">
-            <div class="left-about-heading">
-                <h1>Healthy choice</h1>
-                <br>
-                <p>All our recipes are made from healthy choices,
-                 where you dont have to worry about
-                consuming too much sugar or fat</p>
+        <div class="recipe-items">
+            <div id="left-about">
+                <div class="left-about-heading">
+                    <h1>Healthy choice</h1>
+                    <br>
+                    <p>All our recipes are made from healthy choices,
+                     where you dont have to worry about
+                    consuming too much sugar or fat</p>
+                </div>
+            </div>
+            <div id="right-about">
+                <div class="right-about-heading">
+                    <h2>From around the globe</h2>
+                    <br>
+                    <p>Recipes collected from around the world,
+                        with a balanced taste that suits everyone.</p>
+                </div>
+            </div>
+            <div id="center-about">
+                <div class="center-about-heading">
+                    <h2>Adjustable Ingredients</h2>
+                    <br>
+                    <p>you have the choice to adjust your taste in our recipes with
+                       a range that won't break the structure.</p>
+                </div>
             </div>
         </div>
-        <div id="right-about">
-            <div class="right-about-heading">
-                <h2>From around the globe</h2>
-                <br>
-                <p>Recipes collected from around the world,
-                    with a balanced taste that suits everyone.</p>
-            </div>
-        </div>
-        <div id="center-about">
-            <div class="center-about-heading">
-                <h2>Adjustable Ingredients</h2>
-                <br>
-                <p>you have the choice to adjust your taste in our recipes with
-                   a range that won't break the structure.</p>
-            </div>
-        </div>
+        
     </section>
     <br>
     <h2 class="welcome" id="menu-link">Menu</h2>
@@ -78,8 +47,8 @@
             <h3>Pizza <i class="fas fa-pizza-slice"></i></h3>
             <br>
             <ul>
-                {% for foo in category_1_data %}
-                    <li> <a href="javascript:;" class="add_to_carts" id="{{ foo.id }}"><li>{{ foo.product_name }}</li></a>
+                {% for pizza in pizzas %}
+                    <li> <a class="add_to_carts"><li>{{ pizza.product_name }}</li></a>
                 {% endfor %}
             </ul>
         </div>
@@ -87,8 +56,8 @@
             <h3>Spaghetti <i class="fas fa-utensils"></i></h3>
             <br>
             <ul>
-                {% for foo in category_2_data %}
-                    <li> <a href="javascript:;" class="add_to_carts" id="{{ foo.id }}"><li>{{ foo.product_name }}</li></a>
+                {% for spaghetti in spaghetties %}
+                    <li> <a class="add_to_carts"><li>{{ spaghetti.product_name }}</li></a>
                 {% endfor %}
             </ul>
         </div>
@@ -96,41 +65,18 @@
             <h3>Sweets <i class="fas fa-stroopwafel"></i></h3>
             <br>
             <ul>
-                {% for foo in category_3_data %}
-                    <li> <a href="javascript:;" class="add_to_carts" id="{{ foo.id }}"><li>{{ foo.product_name }}</li></a>
+                {% for sweet in sweets %}
+                    <li> <a class="add_to_carts"><li>{{ sweet.product_name }}</li></a>
                 {% endfor %}
             </ul>
         </div>
     </section>
-
+    <section>
+        <a href="{% url 'make_reservation' %}" class="btn btn-primary" style="color: white !important;">Make Reservation</a>
+    </section>
     <br>
     <h2 class="welcome">Find us here</h2>
     <div id="map-wrapper">
         <iframe id="map" src="https://bit.ly/2QVfkiy" width="100" height="300"></iframe>     
     </div>
-
-    <footer class="text-uppercase">
-
-		<a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Find us on Facebook (link opens in a new tab)"><i class="fab fa-facebook"></i></a>
-		<a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Find us on Instagram (link opens in a new tab)"><i class="fab fa-instagram"></i></a>
-		<a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Find us on Twitter (link opens in a new tab)"><i class="fab fa-twitter"></i></a>
-	</footer>
-    <!-- font awesome script  -->
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://kit.fontawesome.com/68d2463814.js" crossorigin="anonymous"></script>
-</body>
-</html>
-
-<script>
-
-   $(document).on('click','.add_to_carts', function(e){
-       var product_id = $(this).attr('id');
-       var user_id = {{ user_id }}
-       if(user_id == 0){
-           window.location.href = 'login'
-       }else{
-            window.location.href = 'order-details?product_id='+product_id
-       }
-
-   })
-</script>
+{% endblock %}

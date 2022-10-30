@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}- Make Reservation{% endblock %}
+{% block content %}
+    <section class="form-section">
+        {% if reserved %}
+            <div class="alert alert-danger" role="alert">
+                Sorry! We already have a reservation for this time and table. Please choose another table and time
+            </div>
+        {% endif %}
+        <form method="POST" class="signup-form" style="text-align: center;">
+            {% csrf_token %}
+            <div class="product-title">
+                <p><strong>The Corner Pastry</strong></p>
+            </div>
+            <div class="product-text">
+                <p>Table for</p>
+            </div>
+            <div class="table-choice">
+                <div class="table guest minus">
+                    <button type="button"><strong>-</strong></button>
+                </div>
+                <div class="table guest plus">
+                    <button type="button"><strong>+</strong></button>
+                </div>
+                <div class="guest-number">
+                    <strong></strong>
+                    <input type="hidden" name="number_of_guests" class="number_of_guests" value="1">
+                </div>
+            </div>
+            <div class="product-text">
+                <p>Table number</p>
+            </div>
+            <div class="table-choice">
+                <div class="table table_number minus">
+                    <button type="button"><strong>-</strong></button>
+                </div>
+                <div class="table table_number plus">
+                    <button type="button"><strong>+</strong></button>
+                </div>
+                <div class="table-number">
+                    <strong></strong>
+                    <input type="hidden" name="table_number" class="table_number" value="1">
+                </div>
+            </div>
+            <div class="date-title">
+                <p>pick a date &amp; time<p>
+            </div>
+            <div class="date-picker">
+                <input type="date" name="reservation_date" required placeholder="mm/dd/yyyy">
+                <input type="time" name="reservation_time" required placeholder="00:00" />
+            </div>
+            <div class="submit-btn">
+                <button type="submit">Confirm</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            var number = 1;
+            $(".guest-number>strong").html(number);
+        });
+
+        $(".guest.plus").click(function(){
+            number = $(".guest-number>strong").text();
+            number = parseInt(number) + 1;
+            $(".guest-number>strong").html(number);
+            $(".number_of_guests").val(number);
+        })
+
+        $(".guest.minus").click(function(){
+            number = $(".guest-number>strong").text();
+            number = parseInt(number) - 1;
+            /* if(number == 2){
+                $(".guest.minus").css("button:disabled");
+            } */
+            if(number > 0){
+                $(".guest-number>strong").html(number);
+                $(".number_of_guests").val(number);
+            }
+        })
+
+        $(document).ready(function(){
+            var number = 1;
+            $(".table-number>strong").html(number);
+        });
+
+        $(".table_number.plus").click(function(){
+            number = $(".table-number>strong").text();
+            number = parseInt(number) + 1;
+            if(number < 11){
+                $(".table-number>strong").html(number);
+                $(".table_number").val(number);
+            }
+        })
+
+        $(".table_number.minus").click(function(){
+            number = $(".table-number>strong").text();
+            number = parseInt(number) - 1;
+            /* if(number == 2){
+                $(".table.minus").css("button:disabled");
+            } */
+            if(number > 0){
+                $(".table-number>strong").html(number);
+                $(".table_number").val(number);
+            }
+        })
+    </script>
+{% endblock %}
