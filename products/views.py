@@ -5,7 +5,7 @@ from django.db.models import Q
 import time
 import random
 from django.shortcuts import redirect
-from products.models import Categories, WebsiteUser, CustomerOrder, Products
+from products.models import Categories, CustomerOrder, Products
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
