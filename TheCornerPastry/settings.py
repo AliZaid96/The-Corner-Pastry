@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'i6m$l+8z63!7gqdt49cji07)ws(65si&(6%@_=soqf=sz7c5@_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://the-corner-pastry.herokuapp.com/', 'the-corner-pastry.herokuapp.com']
 
