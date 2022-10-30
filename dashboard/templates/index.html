@@ -1,39 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="pastry shop with our unique recipes">
-    <meta name="keywords" content="pastry, food, pizza, recipes and steps">
-
-
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-    <title>The Corner Pastry</title>
-</head>
-<body>
-    <header>
-        <a href="index.html">
-            <h1 id="logo">The Corner Pastry</h1>
-        </a>
-        <nav>
-
-            <ul id="menu">
-                {% if 'user_id' not in request.session %}
-                <li><a href="{% url 'login' %}" aria-label="Go to the feedback page" id="no-spacing">Login</a></li>
-                 {% else %}
-                <li><a href="{% url 'logout' %}" aria-label="Go to the feedback page" id="no-spacing">Logout</a></li>
-                {% endif %}
-                <li><a href="{% url 'feedback' %}" aria-label="Go to the feedback page" id="no-spacing">FeedBack</a></li>
-                <li><a href="#menu-link" aria-label="Go to the menu section">Menu</a></li>
-                <li><a href="index.html" aria-label="Go to the top of the page" class="active">Home</a></li>
-            </ul>
-        </nav>
-
-    </header>
-
-
+{% extends 'base.html' %}
+{% block content %}
     <section id="hero-outer">
         <div id="hero-image"></div>
         <div id="cover-text">
@@ -108,29 +74,18 @@
     <div id="map-wrapper">
         <iframe id="map" src="https://bit.ly/2QVfkiy" width="100" height="300"></iframe>     
     </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+       $(document).on('click','.add_to_carts', function(e){
+           var product_id = $(this).attr('id');
+           var user_id = {{ user_id }}
+           if(user_id == 0){
+               window.location.href = 'login'
+           }else{
+                window.location.href = 'order-details?product_id='+product_id
+           }
 
-    <footer class="text-uppercase">
-
-		<a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Find us on Facebook (link opens in a new tab)"><i class="fab fa-facebook"></i></a>
-		<a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Find us on Instagram (link opens in a new tab)"><i class="fab fa-instagram"></i></a>
-		<a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Find us on Twitter (link opens in a new tab)"><i class="fab fa-twitter"></i></a>
-	</footer>
-    <!-- font awesome script  -->
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://kit.fontawesome.com/68d2463814.js" crossorigin="anonymous"></script>
-</body>
-</html>
-
-<script>
-
-   $(document).on('click','.add_to_carts', function(e){
-       var product_id = $(this).attr('id');
-       var user_id = {{ user_id }}
-       if(user_id == 0){
-           window.location.href = 'login'
-       }else{
-            window.location.href = 'order-details?product_id='+product_id
-       }
-
-   })
-</script>
+       })
+    </script>
+{% endblock %}

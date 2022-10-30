@@ -20,9 +20,4 @@ urlpatterns = [
     path('indiviual_order/', views.indiviual_order, name='indiviual_order'),
     path('customer_order', views.customer_order, name='customer_order'),
     path('logout/', views.logout, name='logout'),
-
-
-
-
-
 ]

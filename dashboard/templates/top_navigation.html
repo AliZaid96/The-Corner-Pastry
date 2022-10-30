@@ -1,0 +1,29 @@
+{% with url_name=request.resolver_match.url_name %}
+    <header>
+        <a href="{% url 'index' %}">
+            <h1 id="logo">The Corner Pastry</h1>
+        </a>
+        <nav>
+            <ul id="menu">
+                {% if 'user_id' not in request.session %}
+                    <li>
+                        <a href="{% url 'login' %}" aria-label="Go to the feedback page" id="no-spacing" class="{% if url_name == 'login' %}active{% endif %}">Login</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'logout' %}" aria-label="Go to the feedback page" id="no-spacing">Logout</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'feedback' %}" aria-label="Go to the feedback page" id="no-spacing" class="{% if url_name == 'feedback' %}active{% endif %}">FeedBack</a>
+                </li>
+                <li>
+                    <a href="#menu-link" aria-label="Go to the menu section">Menu</a>
+                </li>
+                <li>
+                    <a href="{% url 'index' %}" aria-label="Go to the top of the page" class="{% if url_name == 'index' %}active{% endif %}">Home</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+{% endwith %}
