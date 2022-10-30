@@ -121,5 +121,5 @@ MESSAGE_TAGS = {
 }
 
 LOGOUT_REDIRECT_URL = 'login'
-
+LOGIN_URL = 'login'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

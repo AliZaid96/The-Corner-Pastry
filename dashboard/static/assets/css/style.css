@@ -148,16 +148,23 @@ a:visited {
 
 }
 
+.recipe-items {
+    display: flex;
+    flex: row;
+    gap: 1rem;
+    margin: 0 5%;
+}
+
 #left-about {
-    padding-top: 30px;
-    width: 33%;
+    padding: 20px;
+    width: 30%;
     float: left;
-    background-color: rgba(234, 234, 234, .2);
+    background-color: rgba(234, 234, 234, .6);
 }
 
 #right-about {
-    padding-top: 30px;
-    width: 33%;
+    padding: 20px;
+    width: 30%;
     float: right;
     background-color: rgba(234, 234, 234, .6);
 }
@@ -170,26 +177,19 @@ a:visited {
 
 
 .left-about-heading {
-    width: 60%;
-    float: right;
     line-height: 20px;
     clear: both;
-    margin-bottom: 50px;
     letter-spacing: 2px;
 }
 
 .right-about-heading {
-    width: 60%;
-    float: left;
     line-height: 20px;
     clear: both;
-    margin-bottom: 50px;
     letter-spacing: 2px;
     
 }
 
 .center-about-heading {
-
     padding: 20px;
     margin: 0 auto;
 
@@ -291,12 +291,11 @@ footer > a {
 }
 
 .signup-form {
-    margin: 150px 10% 0 0;
+    width: 500px;
+    margin: 4rem 30%;
     color: #fff;
     background-color: rgba(108, 31, 31, .5);
-    max-width: 400px;
     position: absolute;
-    left: 35%;
     padding: 30px;
 }
 
@@ -331,6 +330,19 @@ form  h2 {
     cursor: pointer;
 }
 
+.btn-primary {
+    margin: 20px auto;
+    border-radius: 2px;
+    padding: 15px 32px;
+    font-size: 100%;
+    text-align: center;
+    background: #6A2F2F;
+    color: #fff;
+    display: block;
+    cursor: pointer;
+    width: 250px;
+}
+
 .LoginForm a:hover {
     font-weight: bolder;
     font-size: 1rem;
@@ -342,6 +354,125 @@ form  h2 {
 .join-button:hover {
     background-color: #fafafa;
     color: #f16c6b;
+}
+
+
+.product-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.product-text {
+  margin: 30px 0 30px 0;
+  font-size: 1.5rem;
+}
+
+.table-number,
+.guest-number {
+  font-size: 60px;
+}
+
+.table {
+  line-height: 60px;
+}
+
+.table button {
+  color: black;
+  background: transparent;
+  border: 0px solid black;
+  border-radius:2px;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+/*   box-shadow: 0 2px 1em grey; */
+  /* box-shadow: 0 2px 1em grey; */
+}
+
+.table button:active {
+  transform: translate(0px, 2px);
+  -webkit-transform: translate(0px, 2px);
+  -moz-transform: translate(0px, 2px);
+  -ms-transform: translate(0px, 2px);
+box-shadow: 0px 1px 0px 0px;
+}
+
+button:disabled {
+    opacity: 0.65;
+}
+
+.minus {
+  float: left;
+}
+
+.plus {
+  float: right;
+}
+
+.date-title {
+  margin: 20px 0 10px;
+  font-size: 1rem;
+}
+
+.date-picker {
+  width:100%;
+  position: relative;
+  margin: 0 25%;
+}
+
+.date-picker>input {
+  border: none;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  position: absolute;
+}
+
+.date-picker>input[type="date"] {
+  top: 0;
+  left: -60px;
+}
+
+.date-picker>input[type="time"] {
+  top: 0px;
+  left: 160px;
+}
+
+.submit-btn {
+  margin: 70px 0 20px 0;
+
+}
+
+.table-number > p,
+.guest-number > p {
+    font-size: 1.5rem;
+}
+
+.table-number > input,
+.guest-number > input {
+    width: 200px;
+}
+
+.submit-btn button {
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #5B2227;
+  border-radius:2px;
+  width: 200px;
+  height: 50px;
+/*   box-shadow: 0 2px 1em grey; */
+  font-size:20px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+}
+
+.submit-btn button:hover {
+    color: #fff;
+    background-color: #5B2227;
+}
+
+.submit-btn button:active {
+  transform: translate(0px, 2px);
+  -webkit-transform: translate(0px, 2px);
+  box-shadow: 0px 1px 0px 0px;
 }
 
 .radio-margin {
@@ -416,4 +547,24 @@ form  h2 {
         text-align: center;
         padding: 0 20px;
     }
+}
+
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    text-align: center;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.bd-example>.alert+.alert, .bd-example>.nav+.nav, .bd-example>.navbar+.navbar, .bd-example>.progress+.btn, .bd-example>.progress+.progress {
+    margin-top: 1rem;
 }

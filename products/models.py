@@ -3,19 +3,15 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 
-class Categories(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True)
-    
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = 'Categories'
-
+categories = [
+    ('pz', 'Pizza'),
+    ('sp', 'Spaghetti'),
+    ('sw', 'Sweets'),
+]
 
 class Products(models.Model):
     product_name = models.CharField(max_length=100, unique=True)
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True)
+    category = models.CharField(max_length=2, choices=categories)
     price = models.IntegerField()
 
     def __str__(self):
@@ -25,27 +21,17 @@ class Products(models.Model):
         verbose_name_plural = 'Products'
 
 
-class CustomerOrder(models.Model):
-    order_id = models.CharField(max_length=40, primary_key=True, unique=True, default=uuid.uuid4, verbose_name = 'Order #')
+class Reservations(models.Model):
+    reservation_id = models.CharField(max_length=40, primary_key=True, unique=True, default=uuid.uuid4, verbose_name = 'Order #')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='user_order')
-    order_date = models.DateTimeField(blank=True, null=True)
-    total_amount = models.IntegerField(blank=True, null=True)
-    active = models.BooleanField(default=True)
+    reservation_date = models.DateTimeField()
+    number_of_guests = models.IntegerField(null=True, blank=True)
+    reserved = models.BooleanField(default=True)
+    check_in = models.BooleanField(default=False)
+    table_number = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return self.order_id
+        return self.reservation_id
 
     class Meta:
-        verbose_name_plural = 'Customer Orders'
-
-class OrderProducts(models.Model):
-    order_id = models.ForeignKey(CustomerOrder, on_delete=models.CASCADE, null=True, related_name='order')
-    product = models.ForeignKey(Products, on_delete=models.CASCADE, null=True, related_name='product')
-    quantity = models.CharField(max_length=100, blank=True, null=True)
-    sub_total = models.IntegerField()
-
-    def __str__(self):
-        return self.pk
-
-    class Meta:
-        verbose_name_plural = 'Order Products'
+        verbose_name_plural = 'Reservations'

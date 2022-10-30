@@ -7,21 +7,26 @@
             <ul id="menu">
                 {% if request.user.is_authenticated %}
                     <li>
-                        <a href="{% url 'logout' %}" aria-label="Go to the feedback page" id="no-spacing">Logout</a>
+                        <a href="{% url 'logout' %}" aria-label="Go to the logout page" id="no-spacing">Logout</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'reservations' request.user.pk %}" aria-label="Go to your reservations page" id="no-spacing">My Reservations</a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="{% url 'login' %}" aria-label="Go to the feedback page" id="no-spacing" class="{% if url_name == 'login' %}active{% endif %}">Login</a>
+                        <a href="{% url 'login' %}" aria-label="Go to the login page" id="no-spacing" class="{% if url_name == 'login' %}active{% endif %}">Login</a>
                     </li>
                 {% endif %}
                 <li>
                     <a href="{% url 'feedback' %}" aria-label="Go to the feedback page" id="no-spacing" class="{% if url_name == 'feedback' %}active{% endif %}">FeedBack</a>
                 </li>
+                {% if url_name == 'index' %}
+                    <li>
+                        <a href="#menu-link" aria-label="Go to the menu section">Menu</a>
+                    </li>
+                {% endif %}
                 <li>
-                    <a href="#menu-link" aria-label="Go to the menu section">Menu</a>
-                </li>
-                <li>
-                    <a href="{% url 'index' %}" aria-label="Go to the top of the page" class="{% if url_name == 'index' %}active{% endif %}">Home</a>
+                    <a href="{% url 'index' %}" aria-label="Go to home page" class="{% if url_name == 'index' %}active{% endif %}">Home</a>
                 </li>
             </ul>
         </nav>

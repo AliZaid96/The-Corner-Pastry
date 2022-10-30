@@ -9,31 +9,34 @@
     </section>
     <section id="recipe">
         <h1 class="welcome">Why Our Menu</h1>
-        <div id="left-about">
-            <div class="left-about-heading">
-                <h1>Healthy choice</h1>
-                <br>
-                <p>All our recipes are made from healthy choices,
-                 where you dont have to worry about
-                consuming too much sugar or fat</p>
+        <div class="recipe-items">
+            <div id="left-about">
+                <div class="left-about-heading">
+                    <h1>Healthy choice</h1>
+                    <br>
+                    <p>All our recipes are made from healthy choices,
+                     where you dont have to worry about
+                    consuming too much sugar or fat</p>
+                </div>
+            </div>
+            <div id="right-about">
+                <div class="right-about-heading">
+                    <h2>From around the globe</h2>
+                    <br>
+                    <p>Recipes collected from around the world,
+                        with a balanced taste that suits everyone.</p>
+                </div>
+            </div>
+            <div id="center-about">
+                <div class="center-about-heading">
+                    <h2>Adjustable Ingredients</h2>
+                    <br>
+                    <p>you have the choice to adjust your taste in our recipes with
+                       a range that won't break the structure.</p>
+                </div>
             </div>
         </div>
-        <div id="right-about">
-            <div class="right-about-heading">
-                <h2>From around the globe</h2>
-                <br>
-                <p>Recipes collected from around the world,
-                    with a balanced taste that suits everyone.</p>
-            </div>
-        </div>
-        <div id="center-about">
-            <div class="center-about-heading">
-                <h2>Adjustable Ingredients</h2>
-                <br>
-                <p>you have the choice to adjust your taste in our recipes with
-                   a range that won't break the structure.</p>
-            </div>
-        </div>
+        
     </section>
     <br>
     <h2 class="welcome" id="menu-link">Menu</h2>
@@ -44,8 +47,8 @@
             <h3>Pizza <i class="fas fa-pizza-slice"></i></h3>
             <br>
             <ul>
-                {% for foo in category_1_data %}
-                    <li> <a href="javascript:;" class="add_to_carts" id="{{ foo.id }}"><li>{{ foo.product_name }}</li></a>
+                {% for pizza in pizzas %}
+                    <li> <a class="add_to_carts"><li>{{ pizza.product_name }}</li></a>
                 {% endfor %}
             </ul>
         </div>
@@ -53,8 +56,8 @@
             <h3>Spaghetti <i class="fas fa-utensils"></i></h3>
             <br>
             <ul>
-                {% for foo in category_2_data %}
-                    <li> <a href="javascript:;" class="add_to_carts" id="{{ foo.id }}"><li>{{ foo.product_name }}</li></a>
+                {% for spaghetti in spaghetties %}
+                    <li> <a class="add_to_carts"><li>{{ spaghetti.product_name }}</li></a>
                 {% endfor %}
             </ul>
         </div>
@@ -62,30 +65,18 @@
             <h3>Sweets <i class="fas fa-stroopwafel"></i></h3>
             <br>
             <ul>
-                {% for foo in category_3_data %}
-                    <li> <a href="javascript:;" class="add_to_carts" id="{{ foo.id }}"><li>{{ foo.product_name }}</li></a>
+                {% for sweet in sweets %}
+                    <li> <a class="add_to_carts"><li>{{ sweet.product_name }}</li></a>
                 {% endfor %}
             </ul>
         </div>
     </section>
-
+    <section>
+        <a href="{% url 'make_reservation' %}" class="btn btn-primary" style="color: white !important;">Make Reservation</a>
+    </section>
     <br>
     <h2 class="welcome">Find us here</h2>
     <div id="map-wrapper">
         <iframe id="map" src="https://bit.ly/2QVfkiy" width="100" height="300"></iframe>     
     </div>
-{% endblock %}
-{% block scripts %}
-    <script>
-       $(document).on('click','.add_to_carts', function(e){
-           var product_id = $(this).attr('id');
-           var user_id = {{ user_id }}
-           if(user_id == 0){
-               window.location.href = 'login'
-           }else{
-                window.location.href = 'order-details?product_id='+product_id
-           }
-
-       })
-    </script>
 {% endblock %}

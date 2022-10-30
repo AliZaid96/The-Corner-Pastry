@@ -1,26 +1,21 @@
 from django.shortcuts import render
-from products.models import Categories, Products
+from products.models import Products
 from django.db.models import Q
 
 def index(request):
-    context = {}
-    user_id = 0
-    category_array = []
-    category_1_data = Products.objects.filter(category_id=1)
-    category_2_data = Products.objects.filter(category_id=2)
-    category_3_data = Products.objects.filter(category_id=3)
+    print('Index')
+    context = {
+        'user_id'   :   request.user.pk,
+        'pizzas'  :   Products.objects.filter(category='pz'),
+        'spaghetties'  :   Products.objects.filter(category='sp'),
+        'sweets'  :   Products.objects.filter(category='sw'),
 
-    if 'user_id' in request.session:
-        user_id = request.session['user_id']
-
-    context['category_1_data'] = category_1_data
-    context['category_2_data'] = category_2_data
-    context['category_3_data'] = category_3_data
-    context['user_id'] = user_id
-
+    }
     return render(request, 'index.html', context)
 
 
 def index_admin(request):
-    context = {}
+    context = {
+        'products'  :   Products.objects.all()
+    }
     return render(request, 'admin-index.html', context)

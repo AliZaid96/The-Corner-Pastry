@@ -1,0 +1,41 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+{% block title %}- My Reservations{% endblock %}
+{% block content %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">My Reservations</h1>
+                <br>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <table id="datatablesSimple" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Sr. #</th>
+                                    <th>Reservation #</th>
+                                    <th>Reservation Date</th>
+                                    <th>Table #</th>
+                                    <th>Number of Guests</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for reservation in reservations %}
+                                    <tr style="margin-bottom: 1rem;">
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ reservation.pk }}</td>
+                                        <td>{{ reservation.reservation_date }}</td>
+                                        <td>{{ reservation.table_number }}</td>
+                                        <td>{{ reservation.number_of_guests }}</td>
+                                        <td><a href="{% url 'cancel-reservation' reservation.pk %}" class="btn btn-danger">Cancel</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
