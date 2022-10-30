@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -11,7 +12,7 @@ SECRET_KEY = 'i6m$l+8z63!7gqdt49cji07)ws(65si&(6%@_=soqf=sz7c5@_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://the-corner-pastry.herokuapp.com/', 'the-corner-pastry.herokuapp.com']
 
 # Application definition
 
@@ -30,6 +31,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -65,8 +67,12 @@ WSGI_APPLICATION = 'TheCornerPastry.wsgi.application'
 # Databse configration for development using SQLite
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME':  'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', #Database Engine
+        'NAME': 'd7frv6r8d7hbj6', #Database Name
+        'USER': 'fnqdpeiqvfqiwk', #User Name
+        'PASSWORD': '8485ae4fd47f54892c04548182a0bda75010a042bcdd742848843e575f489f86', #Password
+        'HOST': 'ec2-34-246-25-222.eu-west-1.compute.amazonaws.com', #Host Name (localhost)
+        'PORT': '5432', #Access Port (Leave Blank)
     }
 }
 
@@ -110,6 +116,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_files")
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Tags to load BootStrap class for Django message framework
 MESSAGE_TAGS = {
