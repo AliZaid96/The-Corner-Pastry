@@ -56,6 +56,12 @@ The navigation is fully clear and has good color combination when hovered on, wh
 
 <a href="https://ibb.co/XtpHHd7"><img src="https://i.ibb.co/zZbddLX/reservation.png" alt="reservation" border="0"></a>
 
+## User reservation page
+
+- Users can access their reservation records with date and time on, and the ability to cancel reservations aswell.
+
+<a href="https://ibb.co/S68N6P9"><img src="https://i.ibb.co/YNM2N3q/reserverecord.png" alt="reserverecord" border="0"></a>
+
 ## our location
 
 - Rather than a boring address, i placed a google map link that links the customer directly to our location!
